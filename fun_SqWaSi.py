@@ -32,7 +32,10 @@ def square_wave_sample(duration, pps):
     stream.close()
 
 dur = input("please input the duration:")
-dur = float(dur)
 pps = input("please input the pulses per second within 10 to 880:")
-pps = float(pps)
+
+#as input() returns the string, translate the dtype
+# due to the duration may be 0.5second so here duration use float
+dur = float(dur)
+pps = int(pps)
 square_wave = square_wave_sample(dur,pps)
