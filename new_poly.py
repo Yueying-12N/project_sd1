@@ -7,11 +7,10 @@ import pyaudio
 import matplotlib.pyplot as plt
 import wave
 
-start_idx = 0  #freqs = np.arange(1,5,0.1);#frequency = freqs[0];
+start_idx = 0
 samplerate = sd.query_devices(None, 'output')['default_samplerate']
 CHUNK = 1024
 CHANNELS = 1
-ratio = 1
 pps1 = 1
 pps2 = 1
 pps3 = 1
@@ -26,8 +25,8 @@ def steam_callback(outdata, frames, time, status):
     global start_idx
     t = (start_idx + np.arange(frames)) / samplerate
     t = t.reshape(-1, 1)
-    global pps1,ratio,pps2,pps3
-    # mix two beats
+    global pps1,pps2,pps3
+    # generate beats with input parameters and add them
     outdata[:] = 0.2*(sg.square(2*np.pi*(pps1/2)*t, duty=0.5)
     +sg.square(2*np.pi*(pps2/2)*t,duty=0.5)
     +sg.square(2*np.pi*(pps3/2)*t,duty=0.5))
