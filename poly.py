@@ -1,3 +1,5 @@
+#old version only support 2 beats with inconvenient input
+
 import numpy as np
 from scipy import signal as sg
 import sounddevice as sd
