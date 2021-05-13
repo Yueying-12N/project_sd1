@@ -43,7 +43,7 @@ pps3 = 1  # the third beat's frequency
 sgu.theme('BlueMono')   # set the color if GUI
 ```
 ### 3. Define functions
-This function will be given to the OutputStream object and is called whenever the stream needs a new chunk of sound to play. Parameters of the sound are changed via global external global variables like frequency.
+This function will be given to the OutputStream object and is called whenever the stream needs a new chunk of sound to play. Parameters of the sound are changed via global external global variables like frequency.(Be careful that need to declare the global variables pps1-pps3)
 ```
 def steam_callback(outdata, frames, time, status):
     if status:
@@ -52,7 +52,7 @@ def steam_callback(outdata, frames, time, status):
     t = (start_idx + np.arange(frames)) / samplerate
     t = t.reshape(-1, 1)
     global pps1,pps2,pps3
-    # generate beat with input parameters and add them
+    # generate beats with input parameters and add them
     # due to the duty of square wave is 0.5, so the pps is divided by 2
     # (pps: pulses per second)
     outdata[:] = 0.2*(sg.square(2*np.pi*(pps1/2)*t, duty=0.5)
@@ -131,6 +131,6 @@ while True:
         pps2 = speed*ratio2
         pps3 = speed*ratio3
         window['slider_change'].update()
-        print('basic BPM changed to',speed)
+        print('Beat per second(BPS) changed to',speed)
         stream.start()
 ```
