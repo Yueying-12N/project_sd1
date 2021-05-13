@@ -86,7 +86,7 @@ while True:
         pps2 = speed*ratio2
         pps3 = speed*ratio3
         window['slider_change'].update()
-        print('basic BPM changed to',speed)
+        print('Beat per second(BPS) changed to',speed)
         stream.start()
 
 window.close()
